@@ -161,6 +161,24 @@ public class Store {
                                 double totalAmount,
                                 Scanner scanner) {
         // TODO: implement steps listed above
+        System.out.println("Enter Payment here: ");
+        double userPayment = scanner.nextDouble();
+
+        if (userPayment >= totalAmount){
+            double cashBack = userPayment - totalAmount;
+            System.out.println("Your receipt:");
+            for (Product product : cart) {
+                System.out.printf("%s , $%.2f%n", product.getName(), product.getPrice());
+                System.out.println("============================================================");
+            }
+            System.out.printf("Total: $%.2f%n", totalAmount);
+            System.out.printf("Change Due: $%.2f%n", cashBack);
+        }else{
+            System.out.println("Insufficient Funds");
+        }
+
+
+
     }
 
     /**
