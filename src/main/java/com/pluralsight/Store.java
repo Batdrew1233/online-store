@@ -143,8 +143,11 @@ public class Store {
         if (checkOut.equalsIgnoreCase("x")){
             System.out.println("Exiting");
         }
-        if (checkOut.equalsIgnoreCase("c")) {
+        else if (checkOut.equalsIgnoreCase("c")) {
             checkOut(cart, totalAmount, scanner);
+        }
+        else{
+            System.out.println("Cant recognize command, try again");
         }
 
 
@@ -166,11 +169,12 @@ public class Store {
 
         if (userPayment >= totalAmount){
             double cashBack = userPayment - totalAmount;
-            System.out.println("Your receipt:");
+            System.out.println("\nYour receipt:");
             for (Product product : cart) {
                 System.out.printf("%s , $%.2f%n", product.getName(), product.getPrice());
-                System.out.println("============================================================");
             }
+            System.out.println("============================================================");
+
             System.out.printf("Total: $%.2f%n", totalAmount);
             System.out.printf("Change Due: $%.2f%n", cashBack);
         }else{
