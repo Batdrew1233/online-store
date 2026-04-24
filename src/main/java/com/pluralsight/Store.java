@@ -128,16 +128,25 @@ public class Store {
         //   • ask the user whether to check out (C) or return (X)
         //   • if C, call checkOut(cart, totalAmount, scanner)
 
-        double total = 0;
+        double totalAmount = 0;
         System.out.println("\nYour Cart:");
 
         for (Product product : cart) {
             System.out.printf("%s , $%.2f%n", product.getName(), product.getPrice());
-            total += product.getPrice();
+            totalAmount += product.getPrice();
         }
-        System.out.printf("Total: $%.2f%n", total);
+        System.out.printf("Total: $%.2f%n", totalAmount);
 
         System.out.println("Would you like to check out (C) or return (X)");
+        String checkOut = scanner.nextLine();
+
+        if (checkOut.equalsIgnoreCase("x")){
+            System.out.println("Exiting");
+        }
+        if (checkOut.equalsIgnoreCase("c")) {
+            checkOut(cart, totalAmount, scanner);
+        }
+
 
     }
 
