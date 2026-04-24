@@ -98,7 +98,7 @@ public class Store {
             System.out.printf("%s %s $%.2f%n", product.getID(), product.getName(), product.getPrice());
             }
 
-        System.out.println("Add to cart by ID or X to exit:");
+        System.out.println("Add to cart by ID or exit (X):");
         String searchByID = scanner.nextLine();
 
         if (searchByID.equalsIgnoreCase("x")){
@@ -127,6 +127,18 @@ public class Store {
         //   • compute the total cost
         //   • ask the user whether to check out (C) or return (X)
         //   • if C, call checkOut(cart, totalAmount, scanner)
+
+        double total = 0;
+        System.out.println("\nYour Cart:");
+
+        for (Product product : cart) {
+            System.out.printf("%s , $%.2f%n", product.getName(), product.getPrice());
+            total += product.getPrice();
+        }
+        System.out.printf("Total: $%.2f%n", total);
+
+        System.out.println("Would you like to check out (C) or return (X)");
+
     }
 
     /**
