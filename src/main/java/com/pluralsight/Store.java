@@ -1,6 +1,8 @@
 
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -58,6 +60,27 @@ public class Store {
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
         // TODO: read each line, split on "|",
         //       create a Product object, and add it to the inventory list
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+
+            String line;
+
+            while((line = bufferedReader.readLine()) != null){
+                String[] parts = line.split("\\|");
+
+                String id = parts[0].trim();
+                String name = parts[1].trim();
+                double price = Double.parseDouble(parts[2].trim());
+
+                inventory.add(new Product(id, name, price));
+            }
+            bufferedReader.close();
+        }catch (Exception ex){
+            System.out.println("Something went wrong");
+        }
+
+
     }
 
     /**
@@ -69,6 +92,29 @@ public class Store {
                                        Scanner scanner) {
         // TODO: show each product (id, name, price),
         //       prompt for an id, find that product, add to cart
+        loadInventory("products.csv", inventory);
+
+        for (Product product : inventory){
+            System.out.printf("%s %s $%.2f%n", product.getID(), product.getName(), product.getPrice());
+            }
+
+        System.out.println("Add to cart by ID or X to exit:");
+        String searchByID = scanner.nextLine();
+
+        if (searchByID.equalsIgnoreCase("x")){
+            return;
+        }
+
+
+        for (Product product : inventory) {
+            if (product.getID().equalsIgnoreCase(searchByID)){
+                cart.add(product);
+                System.out.println(product.getName() + " is added to cart.");
+                return;
+
+            }
+        }
+        System.out.println("product not found.");
     }
 
     /**

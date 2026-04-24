@@ -1,21 +1,21 @@
 package com.pluralsight;
 
 public class Product {
-    private int ID;
+    private String ID;
     private String name;
     private double price;
 
-    public Product(int ID, String name, double price) {
+    public Product(String ID, String name, double price) {
         this.ID = ID;
         this.name = name;
         this.price = price;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String iD) {
         this.ID = ID;
     }
 
